@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './build'),
     filename: 'bundle.js'
@@ -21,6 +21,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'build'),
     compress: true,
     port: 80,
+    historyApiFallback: true,
     headers: {
       'Cache-Control': 'no-cache'
     }
@@ -34,7 +35,7 @@ module.exports = {
           { loader: 'css-loader' }
         ]
       }, {
-        test: /\.jsx$/,
+        test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
@@ -45,6 +46,9 @@ module.exports = {
             ]
           }
         }
+      }, {
+        test: /\.(png|jpg)(\?v.*)?$/,
+        use: 'file-loader?name=images/[name].[ext]'
       }
     ]
   }

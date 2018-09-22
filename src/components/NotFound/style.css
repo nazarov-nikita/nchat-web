@@ -1,0 +1,12 @@
+.notFound {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#notFoundImg {
+  height: 20%;
+  margin-right: 50px;
+}
