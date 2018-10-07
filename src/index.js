@@ -1,27 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
+import thunk from 'redux-thunk'
+import io from 'socket.io-client'
 
 import Routes from './Routes'
 import './style.css'
+import reducers from './reducers'
+import RegistrationForm from './components/RegistrationForm'
 
-const history = createBrowserHistory()
+const store = createStore(reducers)
 
-// import io from 'socket.io-client'
 // const socket = io('http://nikkita.ru:3000/')
-
-const reducer = (state = {}, action) => {
-  return state
-}
-
-const store = createStore(reducer)
+// socket.on('connect', () => {
+//   store.dispatch({ type: 'SET_SOCKET', payload: socket })
+// })
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter history={history}>
+    <BrowserRouter>
       <Routes />
     </BrowserRouter>
   </Provider>,

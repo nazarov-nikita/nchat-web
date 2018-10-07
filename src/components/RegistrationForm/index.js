@@ -1,54 +1,27 @@
 import React from 'react'
-import {
-  Form,
-  FormGroup,
-  ControlLabel,
-  FormControl,
-  Button
-} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import './style.css'
 
-function FieldGroup ({ id, label, ...props }) {
-  return (
-    <FormGroup
-      controlId={id}
-    >
-      <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} />
-    </FormGroup>
-  )
+import RegistrationForm from './RegistrationForm'
+
+function register (values) {
+  const req = new window.XMLHttpRequest()
+  if (values.passwordField !== values.repeatPasswordField) return console.log('Passwords Dont Match')
+  const body = JSON.stringify({
+    email: values.emailField,
+    password: values.passwordField
+  })
+  req.open('POST', 'http://nikkita.ru:3000/reg', true)
+  req.setRequestHeader('Content-type', 'application/json; charset=utf-8')
+  req.onreadystatechange = function () {
+    if (this.readyState !== 4) return
+    const response = JSON.parse(this.responseText)
+    if (response.code !== 200) return console.log('response', response)
+    console.log('response', response.message)
+  }
+  req.send(body)
 }
 
-function RegistrationForm () {
-  return (
-    <div id='test'>
-      <Form>
-        <FieldGroup
-          id='emailField'
-          type='email'
-          label='Email address'
-          placeholder='Enter email'
-        />
-        <FieldGroup
-          id='passwordField'
-          type='password'
-          label='Enter password'
-          placeholder='Enter password'
-        />
-        <FieldGroup
-          id='repeatPasswordField'
-          type='password'
-          label='Repeat password'
-          placeholder='Repeat password'
-        />
-        <Button>Registration</Button>
-        <Link to='/login'>
-          <Button bsStyle='link'>Login</Button>
-        </Link>
-      </Form>
-    </div>
-  )
+const Wrap = () => {
+  return <RegistrationForm onSubmit={register} />
 }
 
-export default RegistrationForm
+export default Wrap

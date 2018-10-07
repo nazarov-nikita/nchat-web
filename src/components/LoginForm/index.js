@@ -1,48 +1,26 @@
 import React from 'react'
-import {
-  Form,
-  FormGroup,
-  ControlLabel,
-  FormControl,
-  Button
-} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import './style.css'
 
-function FieldGroup ({ id, label, ...props }) {
-  return (
-    <FormGroup
-      controlId={id}
-    >
-      <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} />
-    </FormGroup>
-  )
+import LoginForm from './LoginForm'
+
+function login (values) {
+  const req = new window.XMLHttpRequest()
+  const body = JSON.stringify({
+    email: values.emailField,
+    password: values.passwordField
+  })
+  req.open('POST', 'http://nikkita.ru:3000/login', true)
+  req.setRequestHeader('Content-type', 'application/json; charset=utf-8')
+  req.onreadystatechange = function () {
+    if (this.readyState !== 4) return
+    const response = JSON.parse(this.responseText)
+    if (response.code !== 200) return console.log('response', response)
+    console.log('response', response.message)
+  }
+  req.send(body)
 }
 
-function LoginForm () {
-  return (
-    <div id='test'>
-      <Form>
-        <FieldGroup
-          id='emailField'
-          type='email'
-          label='Email address'
-          placeholder='Enter email'
-        />
-        <FieldGroup
-          id='passwordField'
-          type='password'
-          label='Enter password'
-          placeholder='Enter password'
-        />
-        <Button>Login</Button>
-        <Link to='/registration'>
-          <Button bsStyle='link'>Registration</Button>
-        </Link>
-      </Form>
-    </div>
-  )
+const Wrap = () => {
+  return <LoginForm onSubmit={login} />
 }
 
-export default LoginForm
+export default Wrap
