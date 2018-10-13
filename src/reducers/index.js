@@ -2,10 +2,24 @@ import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
 const socket = (state = null, action) => {
-  if (action.type === 'SET_SOCKET') {
+  if (action.type === 'CREATE_SOCKET') {
+    return {
+      manager: action.payload,
+      connected: false
+    }
+  }
+  if (action.type === 'SOCKET_CONNECTED') {
+    console.log('SOCKET_CONNECTED')
     return {
       ...state,
-      socket: action.payload
+      connected: true
+    }
+  }
+  if (action.type === 'SOCKET_DISCONNECTED') {
+    console.log('SOCKET_DISCONNECTED')
+    return {
+      ...state,
+      connected: false
     }
   }
   return state

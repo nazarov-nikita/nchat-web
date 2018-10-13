@@ -8,6 +8,10 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+
+import login from './login'
+
 import './style.css'
 
 const ReduxFormControl = ({ input, ...props }) => (<FormControl {...props} {...input} />)
@@ -58,4 +62,8 @@ LoginForm = reduxForm({
   form: 'registrationForm'
 })(LoginForm)
 
-export default LoginForm
+const Login = ({ socket }) => (<LoginForm onSubmit={login({ socket })} />)
+
+export default connect(
+  state => ({ socket: state.socket })
+)(Login)

@@ -1,5 +1,7 @@
 const path = require('path')
+const fs = require('fs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+require('dotenv').config()
 
 module.exports = {
   entry: './src/index.js',
@@ -16,15 +18,20 @@ module.exports = {
   ],
   devServer: {
     host: '0.0.0.0',
+    public: 'nikkita.ru',
     disableHostCheck: true,
     watchContentBase: true,
     contentBase: path.join(__dirname, 'build'),
     compress: true,
-    port: 80,
+    port: process.env.N_HTTPS ? 443 : 80,
     historyApiFallback: true,
     headers: {
       'Cache-Control': 'no-cache'
-    }
+    },
+    https: process.env.N_HTTPS ? ({
+      key: fs.readFileSync('./cert/private.key'),
+      cert: fs.readFileSync('./cert/certificate.crt')
+    }) : false
   },
   module: {
     rules: [

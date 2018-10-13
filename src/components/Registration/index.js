@@ -8,6 +8,9 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+
+import register from './register'
 
 import './style.css'
 
@@ -63,4 +66,8 @@ RegistrationForm = reduxForm({
   form: 'registrationForm'
 })(RegistrationForm)
 
-export default RegistrationForm
+const Registration = ({ socket }) => (<RegistrationForm onSubmit={register({ socket })} />)
+
+export default connect(
+  state => ({ socket: state.socket })
+)(Registration)

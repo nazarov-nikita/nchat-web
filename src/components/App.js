@@ -1,8 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router'
 
-const loggedIn = null
-
-const App = () => (!loggedIn ? <Redirect to='/login' /> : <input />)
+const App = () => (<Redirect to='/chat' />)
 
 export default App
