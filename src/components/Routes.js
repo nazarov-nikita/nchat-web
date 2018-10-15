@@ -7,6 +7,7 @@ import Chat from './Chat'
 import NotFound from './NotFound/NotFound'
 import Login from './Login'
 import Registration from './Registration'
+import Test from './Test'
 
 const Routes = ({ socket }) => {
   if (!socket) return <div />
@@ -15,6 +16,7 @@ const Routes = ({ socket }) => {
       <Switch>
         <Route exact path='/' component={App} />
         <Route exact path='/chat' component={Chat} />
+        <Route exact path='/test' component={Test} />
         <Redirect from='/login' to='/' />
         <Redirect from='/registration' to='/' />
         <Route component={NotFound} />
@@ -25,6 +27,7 @@ const Routes = ({ socket }) => {
       <Switch>
         <Route exact path='/registration' component={Registration} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/test' component={Test} />
         <Redirect from='/' to='/login' />
         <Redirect from='/chat' to='/login' />
         <Route component={NotFound} />

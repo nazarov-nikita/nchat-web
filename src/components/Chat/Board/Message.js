@@ -13,8 +13,9 @@ export default Message
 function dateToShort (timestamp) {
   const date = new Date(parseInt(timestamp))
   const time = []
-  time.push(date.getHours())
-  time.push(date.getMinutes())
-  time.push(date.getSeconds())
+  const to2Digits = (number) => (number.toString().length > 1 ? number : '0' + number)
+  time.push(to2Digits(date.getHours()))
+  time.push(to2Digits(date.getMinutes()))
+  time.push(to2Digits(date.getSeconds()))
   return `${time.join(':')}`
 }

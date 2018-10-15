@@ -1,28 +1,58 @@
 .chat {
   height: 100%;
   display: grid;
-  grid-template-columns: 80px auto 350px;
-  grid-template-rows: auto auto;
+  grid-template-columns: auto 350px;
+  grid-template-rows: 50px auto 36px;
 }
 
-.leftPanel {
-  grid-column: 1 / 2;
-  grid-row: 1 / 3;
-}
-
-.chatBoard {
-  grid-column: 2 / 3;
+.topPanel {
+  grid-column: 1 / 3;
   grid-row: 1 / 2;
 }
 
-.chatInput {
-  grid-column: 2 / 3;
+.chatBoard {
+  grid-column: 1 / 2;
   grid-row: 2 / 3;
+}
+
+.chatInput {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
   height: 36px;
 }
 
-.chatUsersList {
-  grid-column: 3;
-  grid-row: 1 / 3;
+.chatUsersListDesktop {
+  grid-column: 2 / 3;
+  grid-row: 2 / 4;
 }
 
+.chatUsersListMobile {
+  grid-column: 1;
+  grid-row: 2 / 4;
+  z-index: 2;
+  display: none;
+}
+
+@media screen and (max-device-width: 470px) {
+  .chat {
+    grid-template-columns: auto;
+    grid-template-rows: 50px auto 36px;
+  }
+  
+  .topPanel {
+    grid-column: 1;
+  }
+  
+  .chatBoard {
+    grid-column: 1;
+  }
+  
+  .chatInput {
+    grid-column: 1;
+    grid-row: 3 / 4;
+  }
+  
+  .chatUsersListDesktop {
+    display: none;
+  }
+}

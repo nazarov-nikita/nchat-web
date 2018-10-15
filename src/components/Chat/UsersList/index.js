@@ -5,8 +5,8 @@ import User from './User'
 
 import './style.css'
 
-const UsersList = ({ users = {} }) => (
-  <aside className='chatUsersList'>
+const UsersList = ({ users = {}, className }) => (
+  <aside className={`${className} chatUsersList`}>
     {Object.keys(users).map(socketId => (<User key={users[socketId].name} name={users[socketId].name} />))}
   </aside>
 )

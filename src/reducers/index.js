@@ -35,7 +35,7 @@ const users = (state = {}, action) => {
   }
   if (action.type === 'USERS_REMOVE') {
     const _state = { ...state }
-    delete _state[action.payload.socketId]
+    Object.keys(_state).forEach(index => { if (_state[index].socketId === action.payload.socketId) { return delete _state[index] } })
     return _state
   }
   return state

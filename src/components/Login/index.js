@@ -2,10 +2,10 @@ import React from 'react'
 import {
   Form,
   FormGroup,
-  ControlLabel,
-  FormControl,
+  Label,
+  Input,
   Button
-} from 'react-bootstrap'
+} from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
@@ -14,16 +14,16 @@ import login from './login'
 
 import './style.css'
 
-const ReduxFormControl = ({ input, ...props }) => (<FormControl {...props} {...input} />)
+const ReduxInput = ({ input, ...props }) => (<Input {...props} {...input} />)
 
 function FieldGroup ({ id, label, placeholder, type }) {
   return (
     <FormGroup
-      controlId={id}
+      id={id}
     >
-      <ControlLabel>{label}</ControlLabel>
+      <Label>{label}</Label>
       <Field
-        component={ReduxFormControl}
+        component={ReduxInput}
         name={id}
         type={type}
         placeholder={placeholder}
@@ -35,7 +35,7 @@ function FieldGroup ({ id, label, placeholder, type }) {
 
 let LoginForm = ({ handleSubmit }) => {
   return (
-    <div id='test'>
+    <div id='loginForm'>
       <Form onSubmit={handleSubmit}>
         <FieldGroup
           id='emailField'
@@ -49,9 +49,9 @@ let LoginForm = ({ handleSubmit }) => {
           label='Enter password'
           placeholder='Enter password'
         />
-        <Button type='submit'>Login</Button>
+        <Button color='primary' type='submit'>Login</Button>
         <Link to='/registration'>
-          <Button bsStyle='link'>Registration</Button>
+          <Button color='link'>Registration</Button>
         </Link>
       </Form>
     </div>

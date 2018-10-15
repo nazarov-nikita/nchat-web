@@ -1,0 +1,28 @@
+.topPanel {
+  background-color: #212122;
+  display: grid;
+  align-items: center;
+}
+
+.logoutButton, .logoutButton:hover {
+  color: white;
+  justify-self: end;
+  grid-row: 1;
+}
+
+.topPanelRightButtons {
+  justify-self: start;
+  grid-row: 1;
+}
+
+.usersButton {
+  justify-self: start;
+  grid-row: 1;
+  display: none;
+}
+
+@media screen and (max-device-width: 470px) {
+  .usersButton {
+    display: block;
+  }
+}
