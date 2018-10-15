@@ -1,0 +1,9 @@
+.leftPanel {
+  background-color: #212122;
+  display: grid;
+  align-items: start;
+}
+
+.logoutButton, .logoutButton:hover {
+  color: white;
+}

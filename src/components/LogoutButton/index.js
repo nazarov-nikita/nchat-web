@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 
 const LogoutButton = ({ socket }) => {
-  return (<Button bsStyle='link' onClick={logout({ socket })}>logout</Button>)
+  return (<Button bsStyle='link' className='logoutButton' onClick={logout({ socket })}>Logout</Button>)
 }
 
 export default connect(

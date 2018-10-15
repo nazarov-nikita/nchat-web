@@ -1,0 +1,27 @@
+.chatBoard {
+  overflow: auto;
+  padding: 5px 15px 0 15px;
+}
+
+.chatMessage {
+  margin: 10px 0 10px 0;
+  padding: 10px;
+  background-color: #EAEAEA;
+  border-radius: 20px;
+  display: grid;
+  justify-items: start;
+  float: left;
+  clear: left;
+  grid-template-rows: auto auto auto;
+  min-width: 150px;
+}
+
+.messageFrom {
+  font-weight: bold;
+
+}
+
+.messageCreatedAt {
+  justify-self: end;
+  color: #8EB4DB;
+}

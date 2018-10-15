@@ -1,5 +1,16 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const UsersList = () => (<aside></aside>)
+import User from './User'
 
-export default UsersList
+import './style.css'
+
+const UsersList = ({ users = {} }) => (
+  <aside className='chatUsersList'>
+    {Object.keys(users).map(socketId => (<User key={users[socketId].name} name={users[socketId].name} />))}
+  </aside>
+)
+
+export default connect(
+  state => ({ users: state.users })
+)(UsersList)

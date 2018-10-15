@@ -9,14 +9,12 @@ const socket = (state = null, action) => {
     }
   }
   if (action.type === 'SOCKET_CONNECTED') {
-    console.log('SOCKET_CONNECTED')
     return {
       ...state,
       connected: true
     }
   }
   if (action.type === 'SOCKET_DISCONNECTED') {
-    console.log('SOCKET_DISCONNECTED')
     return {
       ...state,
       connected: false
@@ -25,8 +23,41 @@ const socket = (state = null, action) => {
   return state
 }
 
+const users = (state = {}, action) => {
+  if (action.type === 'USERS_ADD') {
+    return {
+      ...state,
+      [action.payload.name]: action.payload
+    }
+  }
+  if (action.type === 'USERS_UPDATE') {
+    return { ...action.payload }
+  }
+  if (action.type === 'USERS_REMOVE') {
+    const _state = { ...state }
+    delete _state[action.payload.socketId]
+    return _state
+  }
+  return state
+}
+
+const messages = (state = [], action) => {
+  if (action.type === 'MESSAGES_ADD') {
+    return [
+      ...state,
+      action.payload
+    ]
+  }
+  if (action.type === 'MESSAGES_UPDATE') {
+    return [ ...action.payload ]
+  }
+  return state
+}
+
 const reducers = combineReducers({
   socket,
+  users,
+  messages,
   form: formReducer
 })
 

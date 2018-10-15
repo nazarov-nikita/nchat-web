@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import Board from './Board'
 import UsersList from './UsersList'
 import ChatInput from './ChatInput'
-import LogoutButton from '../LogoutButton'
+import LeftPanel from './LeftPanel'
 
 import './style.css'
 
 const Chat = ({ socket }) => {
   return (
     <div className='chat'>
-      <aside className='leftAside'><LogoutButton className='chatLogoutButton' /></aside>
+      <LeftPanel className='leftPanel' />
       <Board className='chatBoard' />
       <UsersList className='chatUsersList' />
       <ChatInput className='chatInput' />
